@@ -2,13 +2,13 @@
 
 A real-time factory environment monitoring system built with a BME680 I2C sensor and a rba5d2x board to track temperature, humidity, air quality, and pressure. The system also triggers an alarm when temperature crosses a defined safety threshold.
 
-Overview:
+**Overview:**
 
 This project is designed for industrial and workshop environments where continuous monitoring of environmental conditions is important for equipment safety, worker comfort, and process reliability.
 The rugged board collects BME680 data and publishes it to ThingsBoard, while the buzzer provides a local temperature-threshold alarm and ThingsBoard provides remote monitoring and dashboards. That makes the project more complete because it covers both edge-level safety action and IoT platform integration
 
 
-Features:
+**Features:**
 
 Real-time temperature monitoring
 
@@ -26,7 +26,7 @@ ThingsBoard is deployed using Docker, making the platform easier to set up, mana
 
 
 
-Hardware Used:
+**Hardware Used:**
 
 rba5d2x board
 
@@ -38,7 +38,7 @@ Jumper wires / interface wiring
 
 
 
-Parameters Monitored:
+**Parameters Monitored:**
 
 Temperature	Monitors heat conditions in the factory environment
 
@@ -50,7 +50,7 @@ Pressure	Measures atmospheric pressure for environmental analysis
 
 
 
-System Workflow:
+**System Workflow:**
 
 The BME680 sensor collects environmental data.
 
@@ -63,7 +63,7 @@ When temperature exceeds a preset threshold, the buzzer alarm is activated.
 Sensor data from the BME680 that is collected by the rugged board is pushed to ThingsBoard for real-time monitoring and visualization.
 
 
-Alert Logic:
+**Alert Logic:**
 
 The alarm module is used as a safety indicator.
 
@@ -74,7 +74,7 @@ If temperature exceeds the threshold, the buzzer is activated.
 The threshold value can be tuned based on factory requirements.
 
 
-Applications:
+**Applications:**
 
 Factory floor monitoring
 
@@ -87,7 +87,7 @@ Machine room and control room monitoring
 Environmental alert systems
 
 
-Project Goals:
+**Project Goals:**
 
 Improve awareness of environmental conditions inside industrial spaces
 
@@ -98,11 +98,11 @@ Support safer and smarter factory operations
 Build a scalable embedded monitoring system for IoT-based deployment
 
 
-Folder Structure:
+**Folder Structure:**
 
 
 
-Example Output:
+**Example Output:**
 
 Temperature : 36.8 C
 
@@ -114,11 +114,11 @@ Gas         : 9000 ohm
 
 AQI         : 100
 
-Why this Project Matters:
+**Why this Project Matters:**
 
 In a factory setting, abnormal environmental conditions can affect workers, electronics, machinery, and production quality. A low-cost embedded monitoring system like this helps create a safer and more responsive industrial setup.
 
-Installation Idea
+**Installation Idea**
 
 Connect the BME680 sensor to the rugged board.
 Connect the buzzer to a GPIO output pin.
@@ -127,9 +127,9 @@ Run the program and monitor the live readings.
 Adjust the threshold value based on your use case.
 
 
-Authors:
+**Authors:**
 
-Aditya Shetty.
+**Aditya Shetty.**
 
-Johann Jose Jinu.
+**Johann Jose Jinu.**
 
