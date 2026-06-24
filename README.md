@@ -63,17 +63,6 @@ When temperature exceeds a preset threshold, the buzzer alarm is activated.
 Sensor data from the BME680 that is collected by the rugged board is pushed to ThingsBoard for real-time monitoring and visualization.
 
 
-**Alert Logic:**
-
-The alarm module is used as a safety indicator.
-
-If temperature is below the threshold, the system remains in normal monitoring mode.
-
-If temperature exceeds the threshold, the buzzer is activated.
-
-The threshold value can be tuned based on factory requirements.
-
-
 **Applications:**
 
 Factory floor monitoring
@@ -102,29 +91,9 @@ Build a scalable embedded monitoring system for IoT-based deployment
 
 
 
-**Example Output:**
-
-Temperature : 36.8 C
-
-Humidity    : 58.2 %
-
-Pressure    : 1008.4 hPa
-
-Gas         : 9000 ohm
-
-AQI         : 100
-
 **Why this Project Matters:**
 
 In a factory setting, abnormal environmental conditions can affect workers, electronics, machinery, and production quality. A low-cost embedded monitoring system like this helps create a safer and more responsive industrial setup.
-
-**Installation Idea**
-
-Connect the BME680 sensor to the rugged board.
-Connect the buzzer to a GPIO output pin.
-Build and flash the application.
-Run the program and monitor the live readings.
-Adjust the threshold value based on your use case.
 
 
 **Authors:**
