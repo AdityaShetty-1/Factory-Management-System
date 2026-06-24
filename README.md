@@ -25,6 +25,7 @@ Suitable for factory and industrial monitoring use cases
 ThingsBoard is deployed using Docker, making the platform easier to set up, manage, and scale during development
 
 
+
 Hardware Used:
 
 rba5d2x board
@@ -34,6 +35,8 @@ BME680 I2C environmental sensor
 SFM-27 Buzzer/Alarm
 
 Jumper wires / interface wiring
+
+
 
 Parameters Monitored:
 
@@ -46,7 +49,9 @@ Air Quality Index (AQI)	Estimates air quality based on gas resistance trends
 Pressure	Measures atmospheric pressure for environmental analysis
 
 
+
 System Workflow:
+
 The BME680 sensor collects environmental data.
 
 The rugged board reads sensor values at regular intervals.
@@ -97,9 +102,8 @@ Folder Structure:
 
 
 
-Example Output
+Example Output:
 
-text
 Temperature : 36.8 C
 
 Humidity    : 58.2 %
