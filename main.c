@@ -56,18 +56,18 @@ float calculate_aqi(unsigned long gas)
         return 25;
 
     if (gas >= 20000)
-        return 25 + (40000 - gas) * 75.0f / 20000.0f;
+        return (25 + (40000 - gas) * 75.0f / 20000.0f)-125;
 
     if (gas >= 10000)
-        return 100 + (20000 - gas) * 100.0f / 10000.0f;
+        return (100 + (20000 - gas) * 100.0f / 10000.0f)-125;
 
     if (gas >= 5000)
-        return 200 + (10000 - gas) * 100.0f / 5000.0f;
+        return (200 + (10000 - gas) * 100.0f / 5000.0f)-125;
 
     if (gas >= 2000)
-        return 300 + (5000 - gas) * 200.0f / 3000.0f;
+        return (300 + (5000 - gas) * 200.0f / 3000.0f)-125;
 
-    return 500;
+    return 500-125;
 }
 
 /* Send telemetry to ThingsBoard */
@@ -149,6 +149,7 @@ void send_to_thingsboard(float temp,
 
 int main(void)
 {
+    int led_fd;
     struct bme68x_dev bme;
     struct bme68x_conf conf;
     struct bme68x_heatr_conf heatr;
@@ -189,6 +190,15 @@ int main(void)
     {
         perror("buzzer");
     }
+    system("echo out > /sys/class/gpio/PC13/direction");
+    system("echo 0 > /sys/class/gpio/PC13/value");
+
+    led_fd = open("/sys/class/gpio/PC13/value", O_WRONLY);
+
+    if (led_fd < 0)
+    {
+    perror("led");
+    }
 
     conf.os_hum  = BME68X_OS_2X;
     conf.os_pres = BME68X_OS_4X;
@@ -223,22 +233,32 @@ int main(void)
             float aqi =
                 calculate_aqi(gas);
 
-            int alarm = 0;
+            int alarm = (data.temperature > 30.0) ? 1 : 0;
 
-            if (data.temperature > 30.0)
-                {
-                    alarm = 1;
+           if (data.temperature > 30.0)
+	{
+ 	   /* Buzzer ON */
+    	lseek(buzzer_fd, 0, SEEK_SET);
+    	write(buzzer_fd, "1", 1);
 
-                    lseek(buzzer_fd, 0, SEEK_SET);
-                    write(buzzer_fd, "1", 1);
+    	/* LED ON */
+    	lseek(led_fd, 0, SEEK_SET);
+    	write(led_fd, "0", 1);
 
-                    printf("!!! TEMPERATURE ALARM ACTIVE !!!\n");
-                }
-            else
-                {
-                    lseek(buzzer_fd, 0, SEEK_SET);
-                    write(buzzer_fd, "0", 1);
-                }
+    	printf("ALARM! Buzzer ON, LED ON\n");
+	}
+	else
+	{
+	    /* Buzzer OFF */
+    	lseek(buzzer_fd, 0, SEEK_SET);
+    	write(buzzer_fd, "0", 1);
+
+    	/* LED OFF */
+    	lseek(led_fd, 0, SEEK_SET);
+    	write(led_fd, "1", 1);
+
+    	printf("Normal Condition\n");
+	}
 
             printf("\n");
             printf("=================================\n");
